@@ -32,32 +32,36 @@ IF(${NLOPT_FOUND})
     ${NLOPT_INCLUDE_DIRS}
   )
 
-  add_library(${PROJECT_NAME}_nodelet 
-  src/nodelets/image_undistort_nodelet.cpp 
+  add_library(${PROJECT_NAME}_nodelet
+  src/nodelets/image_undistort_nodelet.cpp
   src/nodelets/stereo_info_nodelet.cpp
   src/nodelets/stereo_undistort_nodelet.cpp
   src/nodelets/depth_nodelet.cpp
+  src/nodelets/depth_semantic_nodelet.cpp
   src/nodelets/point_to_bearing_nodelet.cpp
   src/stereo_info.cpp
   src/stereo_undistort.cpp
   src/depth.cpp
-  src/camera_parameters.cpp 
-  src/image_undistort.cpp 
+  src/depth_semantic.cpp
+  src/camera_parameters.cpp
+  src/image_undistort.cpp
   src/undistorter.cpp
   src/point_to_bearing.cpp)
 
 ELSE()
 
-  add_library(${PROJECT_NAME}_nodelet 
-  src/nodelets/image_undistort_nodelet.cpp 
+  add_library(${PROJECT_NAME}_nodelet
+  src/nodelets/image_undistort_nodelet.cpp
   src/nodelets/stereo_info_nodelet.cpp
   src/nodelets/stereo_undistort_nodelet.cpp
   src/nodelets/depth_nodelet.cpp
+  src/nodelets/depth_semantic_nodelet.cpp
   src/stereo_info.cpp
   src/stereo_undistort.cpp
   src/depth.cpp
-  src/camera_parameters.cpp 
-  src/image_undistort.cpp 
+  src/depth_semantic.cpp
+  src/camera_parameters.cpp
+  src/image_undistort.cpp
   src/undistorter.cpp)
 
   MESSAGE(WARNING "nlopt not found, building without point to bearing nodelet")
@@ -96,6 +100,11 @@ target_link_libraries(depth_node
 
 add_executable(dense_stereo_node src/nodes/dense_stereo_node.cpp)
 target_link_libraries(dense_stereo_node
+  ${catkin_LIBRARIES} ${OpenCV_LIBRARIES}
+)
+
+add_executable(dense_stereo_semantic_node src/nodes/dense_stereo_semantic_node.cpp)
+target_link_libraries(dense_stereo_semantic_node
   ${catkin_LIBRARIES} ${OpenCV_LIBRARIES}
 )
 
