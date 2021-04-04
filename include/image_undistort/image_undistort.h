@@ -134,6 +134,7 @@ class ImageUndistort {
   bool rename_input_frame_;
   std::string input_frame_;
   bool rename_radtan_plumb_bob_;
+  bool use_nearest_;
 
   int frame_counter_;
 };

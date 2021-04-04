@@ -97,6 +97,8 @@ ImageUndistort::ImageUndistort(const ros::NodeHandle& nh,
     input_frame_ = kDefaultInputFrame;
   }
 
+  nh_private_.param("use_nearest", use_nearest_, false);
+
   // setup subscribers
   std::string input_camera_namespace;
   if (input_camera_info_from_ros_params) {
@@ -197,8 +199,14 @@ void ImageUndistort::imageCallback(
     }
   }
 
-  undistorter_ptr_->undistortImage(image_in_ptr->image,
-                                   &(image_out_ptr->image));
+  if(use_nearest_) {
+      undistorter_ptr_->undistortImage(image_in_ptr->image,
+                                       &(image_out_ptr->image),
+                                       cv::INTER_NEAREST);
+  }else{
+      undistorter_ptr_->undistortImage(image_in_ptr->image,
+                                       &(image_out_ptr->image));
+  }
 
   image_out_ptr->header.frame_id = output_frame_;
 

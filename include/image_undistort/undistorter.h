@@ -15,7 +15,7 @@ class Undistorter {
  public:
   Undistorter(const CameraParametersPair& input_camera_parameters_pair);
 
-  void undistortImage(const cv::Mat& image, cv::Mat* undistored_image);
+  void undistortImage(const cv::Mat& image, cv::Mat* undistored_image, int inter_mode=cv::INTER_LINEAR);
 
   // get camera parameters used to build undistorter
   const CameraParametersPair& getCameraParametersPair();
