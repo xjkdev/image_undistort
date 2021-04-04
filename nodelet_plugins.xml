@@ -19,6 +19,11 @@
       Depth nodelet
     </description>
   </class>
+  <class name="image_undistort/DepthSemanticNodelet" type="image_undistort::DepthSemanticNodelet" base_class_type="nodelet::Nodelet">
+    <description>
+      DepthSemantic nodelet
+    </description>
+  </class>
   <class name="image_undistort/PointToBearingNodelet" type="image_undistort::PointToBearingNodelet" base_class_type="nodelet::Nodelet">
     <description>
       Point to bearing nodelet

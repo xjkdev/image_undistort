@@ -218,14 +218,14 @@ void DepthSemantic::calcPointCloud(
 
       if (semantic_image.channels() == 3) {
         const cv::Vec3b& color = semantic_image.at<cv::Vec3b>(y_pixels, x_pixels);
-        point.b = color[0];
+        point.b = color[2];
         point.g = color[1];
-        point.r = color[2];
+        point.r = color[0];
       } else if (semantic_image.channels() == 4) {
         const cv::Vec4b& color = semantic_image.at<cv::Vec4b>(y_pixels, x_pixels);
-        point.b = color[0];
+        point.b = color[2];
         point.g = color[1];
-        point.r = color[2];
+        point.r = color[0];
       } else {
         point.b = semantic_image.at<uint8_t>(y_pixels, x_pixels);
         point.g = point.b;
